@@ -19,7 +19,7 @@ import mesosphere.marathon.client.utils.MarathonException;
 import feign.RequestLine;
 
 public interface Marathon {
-    // Apps
+	// Apps
 	@RequestLine("GET /v2/apps")
 	GetAppsResponse getApps();
 
@@ -42,11 +42,11 @@ public interface Marathon {
 
 	@RequestLine("PUT /v2/apps/{app_id}?force={force}")
 	void updateApp(@Param(value = "app_id", expander = AppIdNormalizer.class) String appId, App app,
-                   @Param("force") boolean force) throws MarathonException;
+				   @Param("force") boolean force) throws MarathonException;
 
 	@RequestLine("POST /v2/apps/{id}/restart?force={force}")
 	void restartApp(@Param(value = "id", expander = AppIdNormalizer.class) String id,
-                    @Param("force") boolean force);
+					@Param("force") boolean force);
 
 	@RequestLine("DELETE /v2/apps/{id}")
 	Result deleteApp(@Param(value = "id", expander = AppIdNormalizer.class) String id) throws MarathonException;
@@ -59,7 +59,7 @@ public interface Marathon {
 	DeleteAppTaskResponse deleteAppTask(@Param(value = "app_id", expander = AppIdNormalizer.class) String appId,
 			@Param("task_id") String taskId, @Param("scale") String scale);
 
-    // Groups
+	// Groups
 	@RequestLine("POST /v2/groups")
 	Result createGroup(Group group) throws MarathonException;
 
@@ -70,15 +70,15 @@ public interface Marathon {
 	@RequestLine("DELETE /v2/groups/{id}")
 	Result deleteGroup(@Param("id") String id) throws MarathonException;
 
-    @RequestLine("DELETE /v2/groups/{id}?force={force}")
-    Result deleteGroup(@Param("id") String id, @Param("force") boolean force) throws MarathonException;
+	@RequestLine("DELETE /v2/groups/{id}?force={force}")
+	Result deleteGroup(@Param("id") String id, @Param("force") boolean force) throws MarathonException;
 
 	@RequestLine("GET /v2/groups/{id}")
 	Group getGroup(@Param("id") String id) throws MarathonException;
 
-    // Tasks
+	// Tasks
 
-    // Deployments
+	// Deployments
 	@RequestLine("GET /v2/deployments")
 	List<Deployment> getDeployments();
 
@@ -88,13 +88,13 @@ public interface Marathon {
 	@RequestLine("DELETE /v2/deployments/{deploymentId}?force=true")
 	void cancelDeployment(@Param("deploymentId") String id);
 
-    // Event Subscriptions
+	// Event Subscriptions
 
-    // Queue
+	// Queue
 
-    // Server Info
-    @RequestLine("GET /v2/info")
-    GetServerInfoResponse getServerInfo();
+	// Server Info
+	@RequestLine("GET /v2/info")
+	GetServerInfoResponse getServerInfo();
 
-    // Miscellaneous
+	// Miscellaneous
 }
